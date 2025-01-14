@@ -9,6 +9,26 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import config from "../../../../../richtpl.config";
 
+// ファイルを順番に確認するヘルパー関数
+const findLocalizedFile = (
+  basePath: string,
+  slug: string[],
+  locale: string
+): string | null => {
+  const pathsToCheck = [
+    `${basePath}/${slug.join("/")}.${locale}.mdx`, // ロケール付き
+    `${basePath}/${slug.join("/")}.${config.i18n.defaultLocale}.mdx`, // デフォルトロケール付き
+    `${basePath}/${slug.join("/")}.mdx`, // 通常ファイル
+  ];
+
+  for (const filePath of pathsToCheck) {
+    if (fs.existsSync(filePath)) {
+      return filePath;
+    }
+  }
+  return null;
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,12 +39,16 @@ export async function generateMetadata({
 
   const slug = (await params).slug;
 
-  // ファイルパスを生成
-  const filePath = path.join(process.cwd(), "docs", `${slug.join("/")}.mdx`);
+  // ファイルを検索
+  const filePath = findLocalizedFile(
+    path.join(process.cwd(), "docs"),
+    slug,
+    locale
+  );
 
   // ファイルの存在確認
-  if (fs.existsSync(filePath)) {
-    const mdxDocs = fs.readFileSync(`docs/${slug.join("/")}.mdx`, "utf-8");
+  if (filePath) {
+    const mdxDocs = fs.readFileSync(filePath, "utf-8");
     const { data } = matter(mdxDocs);
 
     return {
@@ -138,12 +162,20 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string[] }>;
 }) {
-  const slug = (await params).slug;
-  const filePath = path.join(process.cwd(), "docs", `${slug.join("/")}.mdx`);
+  const locale = await getLocale();
 
-  // ファイルの存在確認
-  if (!fs.existsSync(filePath)) {
-    console.error(`File not found: ${filePath}`);
+  const slug = (await params).slug;
+
+  // ファイルを検索
+  const filePath = findLocalizedFile(
+    path.join(process.cwd(), "docs"),
+    slug,
+    locale
+  );
+
+  // ファイルが見つからない場合
+  if (!filePath) {
+    console.error(`File not found for slug: ${slug.join("/")}`);
     return notFound();
   }
 

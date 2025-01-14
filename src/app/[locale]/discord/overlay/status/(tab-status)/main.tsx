@@ -10,10 +10,10 @@ import lazyImport from "@/components/lazyImport";
 const DiscordOverlayStatusPreview = lazyImport(() => import("./preview"));
 const DiscordOverlayStatusCustom = lazyImport(() => import("./custom"));
 const GenerationCssContentModal = lazyImport(
-  () => import("../(ui)/generationCssContentModal")
+  () => import("../../(ui)/generationCssContentModal")
 );
 const ShareCssContentDrawer = lazyImport(
-  () => import("../(ui)/shareCssContentDrawer")
+  () => import("../../(ui)/shareCssContentDrawer")
 );
 
 // CSSコードを圧縮
@@ -112,6 +112,27 @@ export default function TabStatusMainContainer() {
     onDrawerOpen();
   };
 
+  function ButtonContentContainer() {
+    return (
+      <div className="flex flex-wrap gap-3 w-full mt-5 mb-10">
+        <Button
+          className="w-full bg-green-700 text-white"
+          variant="shadow"
+          onPress={handleGeneratedCSS}
+        >
+          Copy Generated CSS
+        </Button>
+        <Button
+          className="w-full bg-green-700 text-white"
+          variant="shadow"
+          onPress={handleShare}
+        >
+          Share Customize
+        </Button>
+      </div>
+    );
+  }
+
   if (!isCssLoaded) {
     // CSSが読み込まれていない場合、コンポーネントを遅延表示
     return null;
@@ -122,7 +143,7 @@ export default function TabStatusMainContainer() {
       <div className="relative grid grid-cols-1 md:!grid-cols-2 w-full">
         <div className="sticky top-0 z-50 block md:!hidden">
           <div className="sticky top-0 z-50">
-            <div className="flex justify-center w-full py-5">
+            <div className="flex justify-center w-full pt-1">
               <DiscordOverlayStatusPreview customCss={customCss} />
             </div>
           </div>
@@ -132,26 +153,14 @@ export default function TabStatusMainContainer() {
             customCss={customCss}
             setCustomCss={setCustomCss}
           />
+          <div className="block md:!hidden">
+            <ButtonContentContainer />
+          </div>
         </div>
         <div className="sticky top-0 z-50 hidden md:!block">
           <div className="sticky top-0 z-50 float-right mt-10">
             <DiscordOverlayStatusPreview customCss={customCss} />
-            <div className="flex flex-wrap gap-3 w-full mt-5 mb-10">
-              <Button
-                className="w-full bg-green-700 text-white"
-                variant="shadow"
-                onPress={handleGeneratedCSS}
-              >
-                Copy Generated CSS
-              </Button>
-              <Button
-                className="w-full bg-green-700 text-white"
-                variant="shadow"
-                onPress={handleShare}
-              >
-                Copy Generated CSS
-              </Button>
-            </div>
+            <ButtonContentContainer />
           </div>
         </div>
       </div>

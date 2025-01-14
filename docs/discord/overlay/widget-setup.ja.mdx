@@ -1,0 +1,96 @@
+---
+title: "DiscordオーバーレイウィジェットをOBSに設定する方法"
+date: "2025-01-14"
+description: "Discord StreamKit Overlay を使って、OBSにウィジェットを簡単にセットアップする手順を解説します。"
+creator: Toa Kiryu
+---
+
+## はじめに
+
+この記事では、**Discord StreamKit Overlay** を利用して OBS にオーバーレイウィジェットを追加する手順を解説します。初心者でも安心してセットアップできるよう、図解付きでわかりやすく説明します。
+
+---
+
+## ステップ 1: サイトにアクセス
+
+まず、[Discord StreamKit Overlay](https://streamkit.discord.com/overlay) にアクセスします。
+
+![Discord StreamKit Overlay サイト](/wp-content/discord/docs/overlay/widget-setup/step-1.png "Discord StreamKit Overlay サイト画面")
+
+---
+
+## ステップ 2: 使用するウィジェットを選択
+
+次に、「**ステータスウィジェット**」「**チャットウィジェット**」「**ボイスウィジェット**」の中から必要なウィジェットを選択します。
+
+![ウィジェット選択画面](/wp-content/discord/docs/overlay/widget-setup/step-1-2.png "ウィジェットの選択画面")
+
+各ウィジェットにはプレビューがついているので、設定内容をリアルタイムで確認しながら調整できます。
+
+> **注**: 以下の画像はステータスウィジェットの例です。
+
+![ステータスウィジェット設定画面](/wp-content/discord/docs/overlay/widget-setup/step-2.png "ステータスウィジェット設定画面")
+
+---
+
+## ステップ 3: URL をコピー
+
+設定が完了したら、プレビューの下に表示される**URL**をコピーしてください。
+
+![URLコピーの例](/wp-content/discord/docs/overlay/widget-setup/step-3.png "プレビュー下のURLをコピーする")
+
+---
+
+## ステップ 4: OBS でシーンを選択
+
+OBS を起動し、追加したいシーンを選択します。次に、ソースの追加ボタン（`+` アイコン）をクリックしてください。
+
+![OBSでソースを追加](/wp-content/discord/docs/overlay/widget-setup/step-4.png "OBSでソースを追加する画面")
+
+---
+
+## ステップ 5: ソースにブラウザを追加
+
+**ソース > ブラウザ** を選択し、新しいブラウザソースを追加します。
+
+![ブラウザソースの追加](/wp-content/discord/docs/overlay/widget-setup/step-5.png "ブラウザソースの選択画面")
+
+---
+
+## ステップ 6: 名前を設定
+
+任意でソース名を入力し、「**OK**」をクリックします。
+
+![名前の設定](/wp-content/discord/docs/overlay/widget-setup/step-6.png "名前を設定する画面")
+
+---
+
+## ステップ 7: URL を入力
+
+プロパティウィンドウが開いたら、最上部にある「**URL**」入力欄に、[ステップ 3](#ステップ-3:-url-をコピー)でコピーした URL を貼り付けます。
+
+![URLの入力画面](/wp-content/discord/docs/overlay/widget-setup/step-7.png "プロパティでURLを入力")
+
+---
+
+## ステップ 8: カスタム CSS を設定（任意）
+
+必要に応じて、下部にある「**カスタム CSS**」セクションを使用してデザインをカスタマイズできます。ここに任意の CSS コードを入力すると、オーバーレイに反映されます。
+
+![カスタムCSSの設定画面](/wp-content/discord/docs/overlay/widget-setup/step-8.png "カスタムCSS設定の例")
+
+---
+
+## ステップ 9: 完了
+
+最後に「**OK**」を押して設定を保存します。これで、OBS に Discord ウィジェットが追加され、配信に活用できます！
+
+![完了画面](/wp-content/discord/docs/overlay/widget-setup/step-9.png "設定が完了した状態")
+
+---
+
+## まとめ
+
+以上で、Discord StreamKit Overlay を使用して OBS にオーバーレイウィジェットを設定する手順は完了です。ぜひ、自分の配信に合わせてデザインや配置を調整してみてください！
+
+> 何か問題が発生した場合は、[公式ページ](https://streamkit.discord.com)を参照してください。

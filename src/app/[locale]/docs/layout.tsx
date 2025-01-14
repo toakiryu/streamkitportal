@@ -25,7 +25,7 @@ export default async function MdxLayout({
   return (
     <div className="w-full h-full min-h-dvh bg-zinc-100 dark:bg-zinc-900">
       <div className="container max-w-5xl">
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-5">
           <div className="my-5">
             <Suspense>
               <GenerationBreadcrumbs pathSegments={pathSegments} />

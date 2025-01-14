@@ -1,7 +1,7 @@
 export const defaultCss = `.statusContainer {
     height: 64px;
     width: 312px;
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 14px;
     border-radius: 3px;
     background-color: rgba(30, 33, 36, 0.95);
@@ -33,7 +33,7 @@ export const defaultCss = `.statusContainer {
   }
   
   .name {
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.95);
     text-overflow: ellipsis;
     font-size: 14px;
     display: inline-block;
@@ -46,7 +46,7 @@ export const defaultCss = `.statusContainer {
   
   .onlineCount {
     display: inline-block;
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.95);
     opacity: 0.3;
     text-transform: uppercase;
     font-size: 12px;
@@ -56,7 +56,7 @@ export const defaultCss = `.statusContainer {
   
   .inviteLink {
     display: inline-block;
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.95);
     font-size: 16px;
     line-height: 19px;
     font-weight: 600;

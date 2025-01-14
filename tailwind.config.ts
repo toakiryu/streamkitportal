@@ -21,6 +21,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        ggsans: ["var(--font-gg-sans)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

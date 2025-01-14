@@ -1,7 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Slider, Switch } from "@nextui-org/react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Slider,
+  Switch,
+} from "@nextui-org/react";
 import { ReactNode, useEffect, useState } from "react";
 import { ColorResult, RGBColor, SketchPicker } from "react-color";
 
@@ -67,7 +73,8 @@ export function UiSettingColorPickerContent({
   ) => void;
   getUiPropertyValue: (className: string, property: string) => string | null;
 }) {
-  const [pickerVisible, setPickerVisible] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   // 色コードをrgba形式に変換するユーティリティ関数
   const parseColorToRgb = (color: string) => {
@@ -152,15 +159,14 @@ export function UiSettingColorPickerContent({
         element.style.overflow = "hidden";
         element.style.userSelect = "none";
       }
-
-      setPickerVisible(true);
     } else {
       if (element) {
         element.style.overflow = "auto";
         element.style.userSelect = "auto";
       }
-      setPickerVisible(false);
     }
+
+    setIsOpen(!!visible);
   };
 
   // 色変更処理
@@ -174,41 +180,45 @@ export function UiSettingColorPickerContent({
   return (
     <UiSettingCard label={label}>
       <div className="flex items-center gap-10">
-        <div
-          className="w-[142px] h-[48px] bg-white dark:bg-black rounded-md shadow-md cursor-pointer"
-          onClick={() => handlePickerVisibleChange(true)}
+        <Popover
+          classNames={{
+            content: ["bg-transparent p-0 border-0"],
+          }}
+          placement="bottom"
+          isOpen={isOpen}
+          onOpenChange={(open) => handlePickerVisibleChange(open)}
         >
-          <div className="float-left p-3 pr-0">
-            {currentColorHex || "#######"}
-          </div>
-          <div
-            className="float-right inline-block w-10 h-10 mt-1 mr-1 border rounded-md"
-            style={{
-              width: "40px",
-              height: "40px",
-              cursor: "pointer",
-              border: "none",
-              outline: "none",
-              backgroundColor: `${currentColorHex}`,
-            }}
-          />
-        </div>
+          <PopoverTrigger>
+            <div
+              role="button"
+              aria-label="color picker trigger"
+              className="w-[142px] h-[48px] bg-white dark:bg-black rounded-md shadow-md cursor-pointer"
+            >
+              <div className="float-left p-3 pr-0">
+                {currentColorHex || "#######"}
+              </div>
+              <div
+                className="float-right inline-block w-10 h-10 mt-1 mr-1 border rounded-md"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  cursor: "pointer",
+                  border: "none",
+                  outline: "none",
+                  backgroundColor: `${currentColorHex}`,
+                }}
+              />
+            </div>
+          </PopoverTrigger>
+          <PopoverContent>
+            <SketchPicker
+              className="border shadow-lg"
+              color={currentColor}
+              onChange={handleColorChange}
+            />
+          </PopoverContent>
+        </Popover>
       </div>
-      {pickerVisible && (
-        <div
-          className="absolute z-[49]"
-        >
-          <div
-            className=" fixed top-0 right-0 bottom-0 left-0"
-            onClick={() => handlePickerVisibleChange(false)}
-          />
-          <SketchPicker
-            className="mt-3 border shadow-lg"
-            color={currentColor}
-            onChange={handleColorChange}
-          />
-        </div>
-      )}
     </UiSettingCard>
   );
 }
@@ -328,6 +338,7 @@ export function UiSettingSwitchContent({
   return (
     <UiSettingCard label={label}>
       <Switch
+        aria-label="setting switch"
         id={id}
         isSelected={isSelected}
         onValueChange={handleChange}
