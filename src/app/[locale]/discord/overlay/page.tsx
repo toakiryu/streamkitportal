@@ -25,8 +25,23 @@ export default function PageDiscordOverlay() {
             </span>
           </div>
         </div>
-        <div>
-          <span className="font-semibold text-neutral-500">Three customizable Discord widgets for your stream.</span>
+        <div className="text-center">
+          <span className="font-semibold text-neutral-500">
+            Three customizable Discord widgets for your stream.
+          </span>
+        </div>
+      </div>
+      <div className="bg-zinc-50 dark:bg-zinc-900 py-28">
+        <div className="container max-w-5xl w-[90%] mx-auto p-0">
+          <div className="text-center">
+            <h1 className="text-2xl sm:!text-4xl md:!text-5xl mb-6 sm:!mb-8 md:!mb-10">
+              カスタマイズ可能なウィジェット
+            </h1>
+            <span className="text-sm sm:!text-lg md:!text-xl mb-2">
+              ３個のウィジェット、サーバーステータス・チャンネルのテキストチャット・ボイスチャンネルが利用可能です。
+            </span>
+          </div>
+          <section className="grid gap-5 grid-cols-1 md:!grid-cols-2 mt-20"></section>
         </div>
       </div>
     </div>

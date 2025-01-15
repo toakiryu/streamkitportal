@@ -1,5 +1,8 @@
 import React, { ComponentType, lazy } from "react";
 
+// import lazyImport from "@/components/lazyImport";
+// const Name = lazyImport(() => import("pass"));
+
 const lazyImport = (factory: () => Promise<{ default: ComponentType<any> }>) =>
   lazy(async () => {
     try {
