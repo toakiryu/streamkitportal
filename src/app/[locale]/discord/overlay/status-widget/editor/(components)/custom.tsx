@@ -2,10 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 import { Tab, Tabs } from "@nextui-org/react";
-import lazyImport from "@/components/lazyImport";
+import { lazyImport } from "@/components/lazyImport";
 
 const DiscordOverlayCustomCodeEditor = lazyImport(
-  () => import("../../(ui)/codeEditor")
+  () => import("../../../(ui)/codeEditor")
 );
 const DiscordOverlayCustomUIControlStatusWidget = lazyImport(
   () => import("./uiControl")

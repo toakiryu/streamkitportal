@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { headers } from "next/headers";
 
-const GenerationBreadcrumbs = lazyImport(() => import("./(ui)/generationBreadcrumbs"));
-
 import "./githubMarkdown.css";
-import lazyImport from "@/components/lazyImport";
+
+import { lazyImport } from "@/components/lazyImport";
+const GenerationBreadcrumbs = lazyImport(() => import("./(ui)/generationBreadcrumbs"));
 
 export default async function MdxLayout({
   children,

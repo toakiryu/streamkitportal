@@ -6,14 +6,14 @@ import { Button, useDisclosure } from "@nextui-org/react";
 import LZString from "lz-string";
 
 import { defaultCss } from "./default-css";
-import lazyImport from "@/components/lazyImport";
+import { lazyImport } from "@/components/lazyImport";
 const DiscordOverlayStatusPreview = lazyImport(() => import("./preview"));
 const DiscordOverlayStatusCustom = lazyImport(() => import("./custom"));
 const GenerationCssContentModal = lazyImport(
-  () => import("../../(ui)/generationCssContentModal")
+  () => import("../../../(ui)/generationCssContentModal")
 );
 const ShareCssContentDrawer = lazyImport(
-  () => import("../../(ui)/shareCssContentDrawer")
+  () => import("../../../(ui)/shareCssContentDrawer")
 );
 
 // CSSコードを圧縮
@@ -107,7 +107,7 @@ export default function TabStatusMainContainer() {
 
   const handleShare = () => {
     const encodedCss = encodeShareCode(customCss); // 現在のCSSをエンコード
-    const shareUrl = `${window.location.origin}/discord/overlay?sharecode=${encodedCss}`; // URLを生成
+    const shareUrl = `${window.location.origin}/discord/overlay/status-widget/editor?sharecode=${encodedCss}`; // URLを生成
     setShareUrl(shareUrl);
     onDrawerOpen();
   };

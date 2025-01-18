@@ -1,10 +1,12 @@
-import lazyImport from "@/components/lazyImport";
+import { ArrowDown } from "lucide-react";
+
+import { lazyImport } from "@/components/lazyImport";
 const DiscordUIAppCard = lazyImport(() => import("./(ui)/appCard"));
 
 export default function PageDiscordOverlay() {
   return (
     <div className="bg-white bg-fixed bg-[200px_202px] bg-[url(/wp-content/discord/cdn/media/ptrn_consoles_light.png)]">
-      <div className="container max-w-5xl min-h-dvh flex flex-col justify-center items-center">
+      <div className="relative container max-w-5xl min-h-dvh flex flex-col justify-center items-center">
         <div className="flex flex-[1_1] flex-col justify-center items-center">
           <div className="flex flex-col justify-center items-center">
             <div className="flex flex-col items-center">
@@ -25,14 +27,14 @@ export default function PageDiscordOverlay() {
             </div>
           </div>
         </div>
-        <div className="text-center">
-          <span className="font-semibold text-neutral-500">
-            This service is not affiliated with Discord Official.
-          </span>
+        <div className="mb-5">
+          <div className="w-fit h-fit mx-auto p-2 border border-indigo-500 rounded-full animate-bounce">
+            <ArrowDown className="text-indigo-500" />
+          </div>
         </div>
       </div>
-      <div className="bg-zinc-50 dark:bg-zinc-900 py-28">
-        <div className="container max-w-5xl w-[90%] mx-auto p-0">
+      <div className="bg-zinc-50 dark:bg-zinc-900 pt-28">
+        <div className="container max-w-5xl w-[90%] mx-auto p-0 pb-28">
           <div className="text-center">
             <h1 className="text-2xl sm:!text-4xl md:!text-5xl mb-6 sm:!mb-8 md:!mb-10">
               お馴染み・お気に入りのアプリ
@@ -103,6 +105,11 @@ export default function PageDiscordOverlay() {
               }}
             />
           </section>
+        </div>
+        <div className="text-center">
+          <span className="font-semibold text-neutral-500">
+            This service is not affiliated with Discord Official.
+          </span>
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+import { getLocale, getTranslations } from "next-intl/server";
 import localFont from "next/font/local";
 
 const ggsans = localFont({
@@ -20,6 +22,18 @@ const ggsans = localFont({
     },
   ],
 });
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: {
+      template: `Discord - %s | ${t(`title`)}`,
+      default: "Discord",
+    },
+  };
+}
 
 export default async function DiscordLayout({
   children,

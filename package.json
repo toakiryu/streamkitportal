@@ -16,6 +16,7 @@
     "@nextui-org/react": "^2.6.10",
     "@nextui-org/system": "^2.4.5",
     "@nextui-org/theme": "^2.4.4",
+    "@tabler/icons-react": "^3.28.1",
     "@types/mdx": "^2.0.13",
     "@uiw/codemirror-theme-dracula": "^4.23.7",
     "@uiw/react-codemirror": "^4.23.7",
