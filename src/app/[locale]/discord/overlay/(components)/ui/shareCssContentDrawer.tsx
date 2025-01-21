@@ -7,16 +7,15 @@ import {
   DrawerHeader,
   Link,
 } from "@nextui-org/react";
+import { handleCopyText } from "../../../(components)/edit";
 
 export default function ShareCssContentDrawer({
   shareUrl,
-  handleCopy,
   isOpen,
   onClose,
   onOpenChange,
 }: {
   shareUrl: string | null;
-  handleCopy: (text: string | null) => void;
   isOpen: boolean;
   onClose: () => void;
   onOpenChange: () => void;
@@ -57,12 +56,7 @@ export default function ShareCssContentDrawer({
           <Button color="danger" variant="light" onPress={onClose}>
             Close
           </Button>
-          <Button
-            color="primary"
-            onPress={() => {
-              handleCopy(shareUrl), onClose();
-            }}
-          >
+          <Button className="bg-indigo-600 dark:bg-indigo-500 text-white" onPress={() => handleCopyText(shareUrl)}>
             Copy
           </Button>
         </DrawerFooter>

@@ -107,7 +107,7 @@ export default function PageDiscordOverlay() {
           </section>
         </div>
         <div className="text-center">
-          <span className="font-semibold text-neutral-500">
+          <span className="font-semibold opacity-60">
             This service is not affiliated with Discord Official.
           </span>
         </div>

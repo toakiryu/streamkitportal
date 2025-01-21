@@ -3,10 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import { Tab, Tabs } from "@nextui-org/react";
 import { lazyImport } from "@/components/lazyImport";
+import DiscordOverlayCustomCodeEditor from "../../../(components)/ui/codeEditor";
 
-const DiscordOverlayCustomCodeEditor = lazyImport(
-  () => import("../../../(ui)/codeEditor")
-);
 const DiscordOverlayCustomUIControlStatusWidget = lazyImport(
   () => import("./uiControl")
 );
@@ -29,9 +27,9 @@ export default function DiscordOverlayStatusCustom({
           classNames={{
             tabList:
               "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-            cursor: "w-full bg-blue-500",
+            cursor: "w-full bg-indigo-600 dark:bg-indigo-400",
             tab: "max-w-fit px-0 h-12",
-            tabContent: "group-data-[selected=true]:text-blue-500",
+            tabContent: "group-data-[selected=true]:text-indigo-600 dark:group-data-[selected=true]:text-indigo-400",
           }}
           color="primary"
           variant="underlined"

@@ -13,9 +13,7 @@ export default function NotFoundPage() {
   useEffect(() => {
     const useLang = preLang || window.navigator.language.slice(0, 2);
     const isLang = config.i18n.locales.some((lang) => lang === useLang);
-    const redirectUrl = `/${isLang ? useLang : config.i18n.defaultLocale}/${
-      params.locale
-    }${pathname}`;
+    const redirectUrl = `/${isLang ? useLang : config.i18n.defaultLocale}/${pathname}`;
     window?.location.replace(redirectUrl);
   }, []);
 

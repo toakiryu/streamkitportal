@@ -1,38 +1,38 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button, useDisclosure } from "@nextui-org/react";
-import LZString from "lz-string";
-
 import { defaultCss } from "./default-css";
 import { lazyImport } from "@/components/lazyImport";
+import {
+  decodeShareCode,
+  encodeShareCode,
+  generateCustomCss,
+} from "../../../../(components)/edit";
+import toast from "react-hot-toast";
+import LoadShareCodeModal from "@/app/[locale]/discord/overlay/(components)/loadShareCodeModal";
+import { Link } from "@/i18n/routing";
 const DiscordOverlayStatusPreview = lazyImport(() => import("./preview"));
-const DiscordOverlayStatusCustom = lazyImport(() => import("./custom"));
+const DiscordOverlayStatusCustom = lazyImport(() => import("./tab"));
 const GenerationCssContentModal = lazyImport(
-  () => import("../../../(ui)/generationCssContentModal")
+  () => import("../../../(components)/ui/generationCssContentModal")
 );
 const ShareCssContentDrawer = lazyImport(
-  () => import("../../../(ui)/shareCssContentDrawer")
+  () => import("../../../(components)/ui/shareCssContentDrawer")
 );
 
-// CSSコードを圧縮
-const encodeShareCode = (code: string): string => {
-  return encodeURIComponent(LZString.compressToEncodedURIComponent(code)); // 圧縮してURLエンコード
-};
-
-// 圧縮されたCSSコードを解凍
-const decodeShareCode = (encodedCode: string): string | null => {
-  const decoded = LZString.decompressFromEncodedURIComponent(
-    decodeURIComponent(encodedCode)
-  ); // URLデコードして解凍
-  return decoded || null; // 解凍できなかった場合は空文字列
-};
-
 export default function TabStatusMainContainer() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [customCss, setCustomCss] = useState<string>("");
 
+  const {
+    isOpen: isLoadShareCodeModalOpen,
+    onOpen: onLoadShareCodeModalOpen,
+    onClose: onLoadShareCodeModalClose,
+    onOpenChange: onLoadShareCodeModalOpenChange,
+  } = useDisclosure();
   const {
     isOpen: isModalOpen,
     onOpen: onModalOpen,
@@ -53,13 +53,18 @@ export default function TabStatusMainContainer() {
 
   // `sharecode`パラメータがあれば、それをデコードして表示
   const sharecode = searchParams.get("sharecode");
+  const loadSharecode = searchParams.get("loadsharecode");
 
   useEffect(() => {
     if (sharecode && typeof sharecode === "string") {
-      const decodedCss = decodeShareCode(sharecode);
-      if (decodedCss) {
-        setCustomCss(decodedCss);
-        setIsCssLoaded(true); // CSSが読み込まれたことを示す
+      const decodedShareURL = decodeShareCode(sharecode);
+      if (decodedShareURL) {
+        const queryParams = new URLSearchParams(searchParams.toString());
+        queryParams.delete("sharecode");
+        queryParams.set("loadsharecode", sharecode);
+        router.replace(`?${queryParams.toString()}`);
+        onLoadShareCodeModalOpen();
+        toast.success("カスタムデータを読み込みました");
         return;
       }
     }
@@ -67,38 +72,13 @@ export default function TabStatusMainContainer() {
     setIsCssLoaded(true); // デフォルトCSSが読み込まれたことを示す
   }, [sharecode]);
 
-  const handleCopy = (text: string | null) => {
-    navigator.clipboard.writeText(text as string).then(
-      () => {
-        console.log("clipboard!");
-      },
-      (err) => {
-        console.error("Failed to copy text: " + err);
-      }
-    );
-  };
-
-  // クラス名を動的に変換
-  const generateCustomCss = (cssText: string) => {
-    return cssText
-      .split("\n")
-      .map((line) => {
-        if (line.includes("{")) {
-          // クラス名を変換
-          const className = line.split(" ")[0].trim();
-          const newClassName = `[class*="Status_${className.replace(
-            ".",
-            ""
-          )}__"]`;
-          return line.replace(className, newClassName);
-        } else if (line.includes(":")) {
-          // すべてのプロパティに !important を追加
-          return line.replace(/([^\s:]+:\s?[^;]+)(;)/g, "$1 !important$2");
-        }
-        return line;
-      })
-      .join("\n");
-  };
+  useEffect(() => {
+    const decodedCss = decodeShareCode(loadSharecode || "");
+    if (decodedCss) {
+      setCustomCss(decodedCss);
+      setIsCssLoaded(true); // CSSが読み込まれたことを示す
+    }
+  }, [loadSharecode]);
 
   const handleGeneratedCSS = () => {
     setGeneratedCustomCss(generateCustomCss(customCss));
@@ -112,23 +92,35 @@ export default function TabStatusMainContainer() {
     onDrawerOpen();
   };
 
+  const handleTemplateAddRequest = () => {
+    const encodedCss = encodeShareCode(customCss);
+    return `/template_add_request?category=discord/overlay/status-widget&style_share_code=${encodedCss}`;
+  };
+
   function ButtonContentContainer() {
     return (
-      <div className="flex flex-wrap gap-3 w-full mt-5 mb-10">
+      <div className="flex flex-col gap-3 w-full mt-5 mb-10">
         <Button
-          className="w-full bg-green-700 text-white"
+          className="w-full bg-indigo-600 dark:bg-indigo-500 text-white"
           variant="shadow"
           onPress={handleGeneratedCSS}
         >
           Copy Generated CSS
         </Button>
         <Button
-          className="w-full bg-green-700 text-white"
+          className="w-full bg-indigo-600 dark:bg-indigo-500 text-white"
           variant="shadow"
           onPress={handleShare}
         >
           Share Customize
         </Button>
+        <Link
+          href={handleTemplateAddRequest()}
+          target="_blank"
+          className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden bg-indigo-600 dark:bg-indigo-500 text-white w-full p-2 rounded-xl transition-all duration-200 ease-in-out hover:opacity-70 active:scale-95"
+        >
+          Template add request
+        </Link>
       </div>
     );
   }
@@ -164,16 +156,24 @@ export default function TabStatusMainContainer() {
           </div>
         </div>
       </div>
+      {loadSharecode && (
+        <LoadShareCodeModal
+          index={1}
+          sharecode={loadSharecode}
+          isOpen={isLoadShareCodeModalOpen}
+          onClose={onLoadShareCodeModalClose}
+          onOpenChange={onLoadShareCodeModalOpenChange}
+        />
+      )}
       <GenerationCssContentModal
         generatedCustomCss={generatedCustomCss}
-        handleCopy={handleCopy}
+        cssCode={customCss}
         isOpen={isModalOpen}
         onClose={onModalClose}
         onOpenChange={onModalOpenChange}
       />
       <ShareCssContentDrawer
         shareUrl={shareUrl}
-        handleCopy={handleCopy}
         isOpen={isDrawerOpen}
         onClose={onDrawerClose}
         onOpenChange={onDrawerOpenChange}

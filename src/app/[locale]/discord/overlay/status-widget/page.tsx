@@ -13,9 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PageDiscordOverlayStatusWidget() {
-
   return (
-    <div className="bg-zinc-100 dark:bg-zinc-900">
+    <div className="bg-zinc-100 dark:bg-zinc-900 w-full min-h-dvh">
       <div className="bg-indigo-600 text-white">
         <div className="container max-w-5xl py-10">
           <div>
@@ -43,7 +42,7 @@ export default async function PageDiscordOverlayStatusWidget() {
         </div>
       </div>
       <div className="container max-w-5xl py-10">
-        <Suspense fallback={<TemplatesContainerSkeleton/>}>
+        <Suspense fallback={<TemplatesContainerSkeleton />}>
           <TemplatesList />
         </Suspense>
       </div>

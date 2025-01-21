@@ -184,7 +184,10 @@ export default async function Page({
 
   return (
     <div>
-      <p className="opacity-70">{data.date || "N/A"}</p>
+      <div className="flex flex-wrap justify-between gap-2">
+        <p className="opacity-70">{data.date || "N/A"}</p>
+        <span>by {data.creator}</span>
+      </div>
       <h1>{data.title || "Untitled"}</h1>
       <MDXRemote components={mdxComponents} source={content} />
     </div>

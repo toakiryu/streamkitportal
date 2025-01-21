@@ -24,7 +24,10 @@ export function UiSettingCardGroupTitle({
   return (
     <div className={cn("pt-12", classNames?.div)}>
       <span
-        className={cn("font-bold uppercase text-orange-500", classNames?.title)}
+        className={cn(
+          "font-bold uppercase text-orange-700 dark:text-orange-500",
+          classNames?.title
+        )}
       >
         {label}
       </span>
@@ -73,7 +76,6 @@ export function UiSettingColorPickerContent({
   ) => void;
   getUiPropertyValue: (className: string, property: string) => string | null;
 }) {
-
   const [isOpen, setIsOpen] = useState(false);
 
   // 色コードをrgba形式に変換するユーティリティ関数
@@ -273,6 +275,8 @@ export function UiSettingSliderContent({
         aria-label={`UiSettingCard > Slider > ${label}`}
         classNames={{
           base: "w-28 sm:!w-48 md:!w-56",
+          track: "border-s-indigo-500",
+          filler: "bg-indigo-500",
         }}
         value={size} // 初期値を状態に反映
         maxValue={slider.maxValue}

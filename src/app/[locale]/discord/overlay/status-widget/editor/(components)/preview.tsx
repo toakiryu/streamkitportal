@@ -1,5 +1,6 @@
 "use client";
 
+import { getIconPass, getRandomIconPass } from "@/app/[locale]/discord/(components)/getRandomIcon";
 import { useEffect, useState } from "react";
 
 export default function DiscordOverlayStatusPreview({
@@ -57,7 +58,7 @@ export default function DiscordOverlayStatusPreview({
                 <div className="serverIcon">
                   <img
                     alt="ICON"
-                    src="/wp-content/discord/cdn/icons/1159691085149388800/a_4557218f6a68708cc3405519cd040ae8.gif"
+                    src={getIconPass("blue")}
                     style={{
                       filter: isImageLoaded ? "none" : "blur(20px)",
                     }}
@@ -67,11 +68,11 @@ export default function DiscordOverlayStatusPreview({
                 </div>
                 <div className="serverInfo">
                   <span className="name">
-                    𝒥𝒶𝓅𝒶𝓃 ⁓日本 🇯🇵 🏴English & Japanese🌸
+                    Server name
                   </span>
                   <span className="onlineCount">0{` `}Online</span>
                 </div>
-                <div className="inviteLink">discord.gg/{}japan</div>
+                <div className="inviteLink">discord.gg/{}server</div>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import {
   UiSettingColorPickerContent,
   UiSettingSliderContent,
   UiSettingSwitchContent,
-} from "../../../(ui)/setting";
+} from "../../../(components)/ui/setting";
 
 export default function DiscordOverlayCustomUIControlStatusWidget({
   customCss,

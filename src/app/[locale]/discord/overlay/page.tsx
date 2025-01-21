@@ -119,7 +119,7 @@ export default function PageDiscordOverlay() {
           </section>
         </div>
       <div className="text-center">
-        <span className="font-semibold text-neutral-500">
+        <span className="font-semibold opacity-60">
           Three customizable Discord widgets for your stream.
         </span>
       </div>

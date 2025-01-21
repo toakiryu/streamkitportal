@@ -8,6 +8,15 @@ const nextConfig = {
   // basePath: "/" // Currently you need to set the `baseUrl` yourself
 
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com',
+      },
+    ],
+  },
 };
 
 const withMDX = createMDX({
