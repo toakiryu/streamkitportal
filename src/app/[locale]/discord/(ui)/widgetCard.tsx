@@ -1,5 +1,4 @@
 import React from "react";
-import { Image } from "@nextui-org/react";
 import { Link } from "@/i18n/routing";
 
 import { IconPhotoCircle, IconProps } from "@tabler/icons-react";

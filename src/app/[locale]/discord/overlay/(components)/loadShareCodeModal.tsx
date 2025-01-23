@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { ReactNode, Suspense, useState } from "react";
 import {
   Button,
   Modal,
@@ -8,14 +8,11 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import { templateType } from "@/components/template";
-import { Link } from "@/i18n/routing";
-
 import { useThemeDarkOrLight } from "@/hooks/theme";
 import { css } from "@codemirror/lang-css";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { IconCircleDashedX } from "@tabler/icons-react";
-import TemplatePreviewCard from "../status-widget/(components)/templatePreviewCard";
+// import TemplatePreviewCard from "../status-widget/(components)/templatePreviewCard";
 import {
   decodeShareCode,
   generateCustomCss,
@@ -23,14 +20,16 @@ import {
 } from "../../(components)/edit";
 
 function LoadShareCodeModal({
-  index,
+  content,
   sharecode,
+  templatePreviewCard,
   isOpen,
   onClose,
   onOpenChange,
 }: {
-  index: number;
+  content: string
   sharecode: string;
+  templatePreviewCard: ReactNode;
   isOpen: boolean;
   onClose: () => void;
   onOpenChange: () => void;
@@ -39,7 +38,7 @@ function LoadShareCodeModal({
 
   const themeDarkOrLight = useThemeDarkOrLight();
 
-  const cssCode = generateCustomCss(decodeShareCode(sharecode) || "");
+  const cssCode = generateCustomCss(content,decodeShareCode(sharecode) || "");
 
   return (
     <Modal
@@ -71,7 +70,7 @@ function LoadShareCodeModal({
                   <Suspense>
                     <div className="w-auto max-w-full mx-auto py-2 overflow-hidden">
                       <div>
-                        <TemplatePreviewCard id={index} code={sharecode} />
+                        {templatePreviewCard}
                       </div>
                     </div>
                   </Suspense>

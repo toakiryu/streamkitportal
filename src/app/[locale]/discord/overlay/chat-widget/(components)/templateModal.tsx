@@ -39,8 +39,8 @@ function TemplateModal({
 
   const themeDarkOrLight = useThemeDarkOrLight();
 
-  const editURL = `http://localhost:3000/discord/overlay/status-widget/editor?sharecode=${template.code}`;
-  const cssCode = generateCustomCss("Status",decodeShareCode(template.code) || "");
+  const editURL = `http://localhost:3000/discord/overlay/chat-widget/editor?sharecode=${template.code}`;
+  const cssCode = generateCustomCss("Chat",decodeShareCode(template.code) || "");
 
   return (
     <Modal

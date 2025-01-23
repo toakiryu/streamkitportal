@@ -83,20 +83,20 @@ export default function TabStatusMainContainer() {
   }, [loadSharecode]);
 
   const handleGeneratedCSS = () => {
-    setGeneratedCustomCss(generateCustomCss("Status", customCss));
+    setGeneratedCustomCss(generateCustomCss("Chat", customCss));
     onModalOpen();
   };
 
   const handleShare = () => {
     const encodedCss = encodeShareCode(customCss); // 現在のCSSをエンコード
-    const shareUrl = `${window.location.origin}/discord/overlay/status-widget/editor?sharecode=${encodedCss}`; // URLを生成
+    const shareUrl = `${window.location.origin}/discord/overlay/chat-widget/editor?sharecode=${encodedCss}`; // URLを生成
     setShareUrl(shareUrl);
     onDrawerOpen();
   };
 
   const handleTemplateAddRequest = () => {
     const encodedCss = encodeShareCode(customCss);
-    return `/template_add_request?category=discord/overlay/status-widget&style_share_code=${encodedCss}`;
+    return `/template_add_request?category=discord/overlay/chat-widget&style_share_code=${encodedCss}`;
   };
 
   function ButtonContentContainer() {
@@ -160,7 +160,7 @@ export default function TabStatusMainContainer() {
       </div>
       {loadSharecode && (
         <LoadShareCodeModal
-          content="Status"
+          content="Chat"
           sharecode={loadSharecode}
           templatePreviewCard={
             <TemplatePreviewCard id={1} code={loadSharecode} />

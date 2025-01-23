@@ -6,7 +6,7 @@ const TabStatusMainContainer = lazyImport(() => import("./(components)/main"));
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Status Widget Editor",
+    title: "Chat Widget Editor",
   };
 }
 
@@ -17,7 +17,7 @@ export default async function PageDiscordOverlayStatusWidget() {
         <div className="container max-w-5xl py-10">
           <div>
             <h1 className="font-bold text-5xl uppercase mb-3">
-              Server card widget - Editor
+              Chat widget - Editor
             </h1>
             <span>
               配信中にDiscordのコミュニティをカスタマイズ、宣伝、そして自慢しましょう。TwitchとDiscordのチャット欄をそれぞれ並べて表示し、ミームを同時に見せることができます。
@@ -25,7 +25,7 @@ export default async function PageDiscordOverlayStatusWidget() {
           </div>
           <div className="flex flex-wrap gap-5 w-full mt-10">
             <Link
-              href="/discord/overlay/status-widget"
+              href="/discord/overlay/chat-widget"
               className="bg-zinc-50 text-indigo-600 font-bold p-3 rounded-md shadow transition-all duration-200 ease-in-out hover:opacity-70 active:scale-95"
             >
               テンプレートを見る

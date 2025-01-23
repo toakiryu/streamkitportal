@@ -2,21 +2,23 @@ import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import localFont from "next/font/local";
 
+import "./_modules/root.css"
+
 const ggsans = localFont({
   variable: "--font-gg-sans",
   src: [
     {
-      path: "./overlay/_fonts/ggsans-400-normal.woff2",
+      path: "./_fonts/ggsans-400-normal.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./overlay/_fonts/ggsans-600-semibold.woff2",
+      path: "./_fonts/ggsans-600-semibold.woff2",
       weight: "600",
       style: "semibold",
     },
     {
-      path: "./overlay/_fonts/ggsans-700-bold.woff2",
+      path: "./_fonts/ggsans-700-bold.woff2",
       weight: "700",
       style: "bold",
     },
@@ -29,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      template: `Discord - %s | ${t(`title`)}`,
+      template: `%s -Discord | ${t(`title`)}`,
       default: "Discord",
     },
   };

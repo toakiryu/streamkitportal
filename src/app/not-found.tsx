@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { getCookie } from "cookies-next/client";
 import config from "../../richtpl.config";
 
 export default function NotFoundPage() {
   const pathname = usePathname();
-  const params = useParams();
+  // const params = useParams();
   const preLang = getCookie("NEXT_LOCALE");
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { ComponentType, lazy } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 // 共通のエラーハンドリングと遅延読み込み関数
 const lazyImport = (factory: () => Promise<{ default: ComponentType<any> }>) =>

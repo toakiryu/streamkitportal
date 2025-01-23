@@ -46,34 +46,33 @@ export default function DiscordOverlayStatusPreview({
       </div>
       {isPreviewOpen && (
         <div className="flex justify-center w-full py-5">
-          <div className="relative">
+          <div className="relative w-full">
             <style>{customCss}</style>
-            <div className="statusContainer">
-              <div
-                className="status"
-                style={{
-                  backgroundImage: 'url("/wp-content/discord/icon-wite.svg")',
-                }}
-              >
-                <div className="serverIcon">
+            <div className="voiceContainer">
+              <ul className="voiceStates">
+                <li className="voiceState" data-userid={0}>
                   <img
-                    alt="ICON"
+                    className="avatar avatarSpeaking"
                     src={getIconPass("blue")}
-                    style={{
-                      filter: isImageLoaded ? "none" : "blur(20px)",
-                    }}
-                    loading="lazy"
-                    fetchPriority="high"
+                    alt=""
                   />
-                </div>
-                <div className="serverInfo">
-                  <span className="name">
-                    Server name
-                  </span>
-                  <span className="onlineCount">0{` `}Online</span>
-                </div>
-                <div className="inviteLink">discord.gg/{}server</div>
-              </div>
+                  <div className="user">
+                    <span className="name">Username</span>
+                  </div>
+                </li>
+                <li className="voiceState" data-userid={1}>
+                  <img className="avatar" src={getIconPass("green")} alt="" />
+                  <div className="user">
+                    <span className="name">Username</span>
+                  </div>
+                </li>
+                <li className="voiceState" data-userid={2}>
+                  <img className="avatar" src={getIconPass("grey")} alt="" />
+                  <div className="user">
+                    <span className="name">Username</span>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

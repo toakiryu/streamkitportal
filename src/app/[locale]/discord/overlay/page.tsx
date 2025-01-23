@@ -1,9 +1,14 @@
 import { Metadata } from "next";
 
-import { IconMessages, IconMicrophone, IconUsersGroup } from "@tabler/icons-react";
+import {
+  IconMessages,
+  IconMicrophone,
+  IconUsersGroup,
+} from "@tabler/icons-react";
 import { ArrowDown } from "lucide-react";
 
 import { lazyImport } from "@/components/lazyImport";
+import { Link } from "@/i18n/routing";
 const DiscordUIWidgetCard = lazyImport(() => import("../(ui)/widgetCard"));
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -41,7 +46,7 @@ export default function PageDiscordOverlay() {
         </div>
         <div className="mb-5">
           <div className="w-fit h-fit mx-auto p-2 border border-indigo-500 rounded-full animate-bounce">
-            <ArrowDown  className="text-indigo-500"/>
+            <ArrowDown className="text-indigo-500" />
           </div>
         </div>
       </div>
@@ -92,7 +97,7 @@ export default function PageDiscordOverlay() {
               buttons={{
                 customize: {
                   label: "カスタマイズ",
-                  link: "/discord/overlay",
+                  link: "/discord/overlay/chat-widget",
                 },
               }}
             />
@@ -112,17 +117,25 @@ export default function PageDiscordOverlay() {
               buttons={{
                 customize: {
                   label: "カスタマイズ",
-                  link: "/discord/overlay",
+                  link: "/discord/overlay/voice-widget",
                 },
               }}
             />
           </section>
+          <div className="flex flex-col justify-center items-center w-full mt-10">
+            <Link
+              href="/discord"
+              className="bg-indigo-600/90 dark:!bg-indigo-500/90 text-white text-sm text-center font-normal flex justify-center items-center w-full max-w-xl mt-5 py-2 px-4 rounded-md transition-all duration-200 ease-in-out hover:opacity-70 hover:shadow-md active:scale-95"
+            >
+              Discordに戻る
+            </Link>
+          </div>
         </div>
-      <div className="text-center">
-        <span className="font-semibold opacity-60">
-          Three customizable Discord widgets for your stream.
-        </span>
-      </div>
+        <div className="text-center">
+          <span className="font-semibold opacity-60">
+            Three customizable Discord widgets for your stream.
+          </span>
+        </div>
       </div>
     </div>
   );

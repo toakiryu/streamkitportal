@@ -83,20 +83,20 @@ export default function TabStatusMainContainer() {
   }, [loadSharecode]);
 
   const handleGeneratedCSS = () => {
-    setGeneratedCustomCss(generateCustomCss("Status", customCss));
+    setGeneratedCustomCss(generateCustomCss("Voice",customCss));
     onModalOpen();
   };
 
   const handleShare = () => {
     const encodedCss = encodeShareCode(customCss); // 現在のCSSをエンコード
-    const shareUrl = `${window.location.origin}/discord/overlay/status-widget/editor?sharecode=${encodedCss}`; // URLを生成
+    const shareUrl = `${window.location.origin}/discord/overlay/voice-widget/editor?sharecode=${encodedCss}`; // URLを生成
     setShareUrl(shareUrl);
     onDrawerOpen();
   };
 
   const handleTemplateAddRequest = () => {
     const encodedCss = encodeShareCode(customCss);
-    return `/template_add_request?category=discord/overlay/status-widget&style_share_code=${encodedCss}`;
+    return `/template_add_request?category=discord/overlay/voice-widget&style_share_code=${encodedCss}`;
   };
 
   function ButtonContentContainer() {
@@ -162,9 +162,7 @@ export default function TabStatusMainContainer() {
         <LoadShareCodeModal
           content="Status"
           sharecode={loadSharecode}
-          templatePreviewCard={
-            <TemplatePreviewCard id={1} code={loadSharecode} />
-          }
+          templatePreviewCard={<TemplatePreviewCard id={1} code={loadSharecode}/>}
           isOpen={isLoadShareCodeModalOpen}
           onClose={onLoadShareCodeModalClose}
           onOpenChange={onLoadShareCodeModalOpenChange}
@@ -172,11 +170,7 @@ export default function TabStatusMainContainer() {
       )}
       <GenerationCssContentModal
         generatedCustomCss={generatedCustomCss}
-        templatePreviewCard={
-          <div className="w-fit mx-auto">
-            <TemplatePreviewCard id={2} css={customCss} />
-          </div>
-        }
+        templatePreviewCard={<TemplatePreviewCard id={2} css={customCss} />}
         isOpen={isModalOpen}
         onClose={onModalClose}
         onOpenChange={onModalOpenChange}

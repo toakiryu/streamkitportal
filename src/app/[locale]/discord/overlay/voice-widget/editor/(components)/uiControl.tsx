@@ -33,7 +33,7 @@ export default function DiscordOverlayCustomUIControlStatusWidget({
   return (
     <section id="setting-items-container" className="flex flex-col h-full">
       <UiSettingCardGroupTitle
-        label="Card Setting"
+        label="Container Setting"
         classNames={{
           div: "pt-5",
         }}
@@ -41,7 +41,7 @@ export default function DiscordOverlayCustomUIControlStatusWidget({
       <UiSettingColorPickerContent
         label="Text Color"
         classContent={{
-          group: "statusContainer",
+          group: "voiceContainer",
           name: "color",
         }}
         handleUiChange={handleUiChange}
@@ -50,7 +50,7 @@ export default function DiscordOverlayCustomUIControlStatusWidget({
       <UiSettingSliderContent
         label="Font Size"
         classContent={{
-          group: "statusContainer",
+          group: "voiceContainer",
           name: "font-size",
           endContent: "px",
         }}
@@ -63,18 +63,68 @@ export default function DiscordOverlayCustomUIControlStatusWidget({
         handleUiChange={handleUiChange}
         getUiPropertyValue={getUiPropertyValue}
       />
+      <UiSettingCardGroupTitle label="avatar setting" />
       <UiSettingSliderContent
         label="Radius"
         classContent={{
-          group: "statusContainer",
+          group: "avatar",
           name: "border-radius",
+          endContent: "%",
+        }}
+        slider={{
+          defaultValue: 50,
+          maxValue: 100,
+          minValue: 0,
+          step: 1,
+        }}
+        handleUiChange={handleUiChange}
+        getUiPropertyValue={getUiPropertyValue}
+      />
+      <UiSettingCardGroupTitle label="avatar speaking setting" />
+      <UiSettingColorPickerContent
+        label="Border Color"
+        classContent={{
+          group: "avatarSpeaking",
+          name: "border-color",
+        }}
+        handleUiChange={handleUiChange}
+        getUiPropertyValue={getUiPropertyValue}
+      />
+      <UiSettingCardGroupTitle label="name setting" />
+      <UiSettingSwitchContent
+        label="Display Show"
+        classContent={{
+          group: "name",
+          name: "display",
+        }}
+        switchContent={{
+          trueContent: "inline-block",
+          falseContent: "none",
+        }}
+        handleUiChange={handleUiChange}
+        getUiPropertyValue={getUiPropertyValue}
+      />
+      <UiSettingSliderContent
+        label="Font Size"
+        classContent={{
+          group: "name",
+          name: "font-size",
           endContent: "px",
         }}
         slider={{
-          defaultValue: 3,
+          defaultValue: 14,
           maxValue: 50,
           minValue: 0,
           step: 1,
+        }}
+        handleUiChange={handleUiChange}
+        getUiPropertyValue={getUiPropertyValue}
+      />
+      <UiSettingColorPickerContent
+        label="Text Color"
+        classContent={{
+          group: "name",
+          name: "color",
         }}
         handleUiChange={handleUiChange}
         getUiPropertyValue={getUiPropertyValue}
@@ -82,22 +132,8 @@ export default function DiscordOverlayCustomUIControlStatusWidget({
       <UiSettingColorPickerContent
         label="Background Color"
         classContent={{
-          group: "statusContainer",
+          group: "name",
           name: "background-color",
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingCardGroupTitle label="Server Icon Setting" />
-      <UiSettingSwitchContent
-        label="Display Show"
-        classContent={{
-          group: "serverIcon",
-          name: "display",
-        }}
-        switchContent={{
-          trueContent: "inline-block",
-          falseContent: "none",
         }}
         handleUiChange={handleUiChange}
         getUiPropertyValue={getUiPropertyValue}
@@ -105,132 +141,12 @@ export default function DiscordOverlayCustomUIControlStatusWidget({
       <UiSettingSliderContent
         label="Radius"
         classContent={{
-          group: "serverIcon",
+          group: "name",
           name: "border-radius",
           endContent: "px",
         }}
         slider={{
-          defaultValue: 10,
-          maxValue: 50,
-          minValue: 0,
-          step: 1,
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingCardGroupTitle label="Server Name Setting" />
-      <UiSettingColorPickerContent
-        label="Text Color"
-        classContent={{
-          group: "name",
-          name: "color",
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingSliderContent
-        label="Font Size"
-        classContent={{
-          group: "name",
-          name: "font-size",
-          endContent: "px",
-        }}
-        slider={{
-          defaultValue: 14,
-          maxValue: 50,
-          minValue: 0,
-          step: 1,
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingCardGroupTitle label="Online Count Setting" />
-      <UiSettingSwitchContent
-        label="Display Show"
-        classContent={{
-          group: "onlineCount",
-          name: "display",
-        }}
-        switchContent={{
-          trueContent: "inline-block",
-          falseContent: "none",
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingColorPickerContent
-        label="Text Color"
-        classContent={{
-          group: "onlineCount",
-          name: "color",
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingSliderContent
-        label="Opacity"
-        classContent={{
-          group: "onlineCount",
-          name: "opacity",
-          endContent: "",
-        }}
-        slider={{
-          defaultValue: 0.3,
-          maxValue: 1,
-          minValue: 0,
-          step: 0.1,
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingSliderContent
-        label="Font Size"
-        classContent={{
-          group: "onlineCount",
-          name: "font-size",
-          endContent: "px",
-        }}
-        slider={{
-          defaultValue: 12,
-          maxValue: 50,
-          minValue: 0,
-          step: 1,
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingCardGroupTitle label="Invite Link Setting" />
-      <UiSettingSwitchContent
-        label="Display Show"
-        classContent={{
-          group: "inviteLink",
-          name: "display",
-        }}
-        switchContent={{
-          trueContent: "inline-block",
-          falseContent: "none",
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingColorPickerContent
-        label="Text Color"
-        classContent={{
-          group: "inviteLink",
-          name: "color",
-        }}
-        handleUiChange={handleUiChange}
-        getUiPropertyValue={getUiPropertyValue}
-      />
-      <UiSettingSliderContent
-        label="Font Size"
-        classContent={{
-          group: "inviteLink",
-          name: "font-size",
-          endContent: "px",
-        }}
-        slider={{
-          defaultValue: 12,
+          defaultValue: 3,
           maxValue: 50,
           minValue: 0,
           step: 1,

@@ -53,7 +53,7 @@ export function UiSettingCard({
       className={cn("flex flex-row items-center h-[76px]", classNames?.card)}
     >
       <label className={cn("flex-[1_1]", classNames?.label)}>{label}</label>
-      <div className={cn("", classNames?.body)}>{children}</div>
+      <div className={cn("select-none", classNames?.body)}>{children}</div>
     </div>
   );
 }
@@ -190,7 +190,7 @@ export function UiSettingColorPickerContent({
           isOpen={isOpen}
           onOpenChange={(open) => handlePickerVisibleChange(open)}
         >
-          <PopoverTrigger>
+          <PopoverTrigger className="z-0">
             <div
               role="button"
               aria-label="color picker trigger"
@@ -200,7 +200,7 @@ export function UiSettingColorPickerContent({
                 {currentColorHex || "#######"}
               </div>
               <div
-                className="float-right inline-block w-10 h-10 mt-1 mr-1 border rounded-md"
+                className="z-0 float-right inline-block w-10 h-10 mt-1 mr-1 border rounded-md"
                 style={{
                   width: "40px",
                   height: "40px",

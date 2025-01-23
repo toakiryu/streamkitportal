@@ -1,5 +1,5 @@
 import LZString from "lz-string";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 // CSSコードを圧縮
 export const encodeShareCode = (code: string): string => {
@@ -27,14 +27,14 @@ export const handleCopyText = (text: string | null) => {
 };
 
 // クラス名を動的に変換
-export const generateCustomCss = (cssText: string) => {
+export const generateCustomCss = (content: string, cssText: string) => {
   return cssText
     .split("\n")
     .map((line) => {
       if (line.includes("{")) {
         // クラス名を変換
         const className = line.replace(/^\s+/, "").split(" ")[0].trim();
-        const newClassName = `[class*="Status_${className.replace(
+        const newClassName = `[class*="${content}_${className.replace(
           ".",
           ""
         )}__"]`;

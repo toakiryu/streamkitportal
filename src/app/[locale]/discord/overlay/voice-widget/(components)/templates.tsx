@@ -36,7 +36,7 @@ export default function TemplatesList() {
   const fetchTemplates = async () => {
     try {
       const res = await getTemplates(
-        ["discord", "overlay", "status-widget"],
+        ["discord", "overlay", "voice-widget"],
         (currentPage - 1) * ITEMS_PER_PAGE,
         ITEMS_PER_PAGE,
         filter

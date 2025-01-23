@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { getRandomIconPass } from "../../../(components)/getRandomIcon";
+import { getIconPass } from "../../../(components)/getRandomIcon";
 import { decodeShareCode } from "../../../(components)/edit";
 
 // クラス名を動的に変換
@@ -43,27 +43,31 @@ function TemplatePreviewCard({
   return (
     <div className="overflow-hidden select-none">
       <style>{style}</style>
-      <div className={idStyle("statusContainer")}>
-        <div
-          className={idStyle("status")}
-          style={{
-            backgroundImage: 'url("/wp-content/discord/icon-wite.svg")',
-          }}
-        >
-          <div className={idStyle("serverIcon")}>
+      <div className={idStyle("voiceContainer")}>
+        <ul className={idStyle("voiceStates")}>
+          <li className={idStyle("voiceState")} data-userid={0}>
             <img
-              alt="ICON"
-              src={getRandomIconPass()}
-              loading="lazy"
-              fetchPriority="high"
+              className={`${idStyle("avatar")} ${idStyle("avatarSpeaking")}`}
+              src={getIconPass("blue")}
+              alt=""
             />
-          </div>
-          <div className={idStyle("serverInfo")}>
-            <span className={idStyle("name")}>Server Name</span>
-            <span className={idStyle("onlineCount")}>0{` `}Online</span>
-          </div>
-          <div className={idStyle("inviteLink")}>discord.gg/{}server</div>
-        </div>
+            <div className={idStyle("user")}>
+              <span className={idStyle("name")}>Username</span>
+            </div>
+          </li>
+          <li className={idStyle("voiceState")} data-userid={1}>
+            <img className={idStyle("avatar")} src={getIconPass("green")} alt="" />
+            <div className={idStyle("user")}>
+              <span className={idStyle("name")}>Username</span>
+            </div>
+          </li>
+          <li className={idStyle("voiceState")} data-userid={2}>
+            <img className={idStyle("avatar")} src={getIconPass("grey")} alt="" />
+            <div className={idStyle("user")}>
+              <span className={idStyle("name")}>Username</span>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
