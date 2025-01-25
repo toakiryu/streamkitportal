@@ -174,9 +174,14 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html id="element-html" lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      id="element-html"
+      className="bg-zinc-50 dark:bg-zinc-900"
+      suppressHydrationWarning
+    >
       <body
-        className={`relative w-full h-full overflow-x-clip ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`relative bg-zinc-50 dark:bg-zinc-900 w-full h-full min-h-dvh overflow-x-clip ${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -185,7 +190,7 @@ export default async function LocaleLayout({
           {...config.themeConfig.colorMode.custom}
         >
           <NextIntlClientProvider messages={messages}>
-            <ToasterProvider/>
+            <ToasterProvider />
             <main className="w-full h-full">{children}</main>
             <DevFooter />
           </NextIntlClientProvider>

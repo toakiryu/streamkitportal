@@ -6,20 +6,20 @@ import Config from "@/types/richtpl.config";
  */
 const config: Config = {
   // Tagline for the site
-  tagline: "StreamKit",
+  tagline: "StreamKit Portal",
 
   // URL to the favicon
   favicon: "/favicon.ico",
 
   // Production URL of the site
-  url: "https://streamkit.toakiryu.com",
+  url: "https://streamkitportal.toakiryu.com",
 
   // Base URL pathname (for GitHub Pages deployment)
   baseUrl: "/",
 
   // GitHub deployment configuration
   organizationName: "toakiryu", // GitHub organization/user name
-  projectName: "streamkit", // GitHub repository name
+  projectName: "streamkitportal", // GitHub repository name
 
   // Internationalization (i18n) configuration
   i18n: {
@@ -74,7 +74,7 @@ const config: Config = {
       generator: "Next.js",
       publisher: "Vercel",
       robots: "follow, index",
-      metadataBase: new URL("https://streamkit.toakiryu.com"),
+      metadataBase: new URL("https://streamkitportal.toakiryu.com"),
     },
     // Sitemap Configuration
     sitemap: {
