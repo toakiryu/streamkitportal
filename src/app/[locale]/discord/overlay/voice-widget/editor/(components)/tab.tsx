@@ -21,14 +21,15 @@ export default function DiscordOverlayStatusCustom({
 
   return (
     <div>
-      <div className="flex w-full flex-col">
+      <div className="relative flex w-full flex-col">
         <Tabs
           aria-label="Options"
           classNames={{
+            base: "sticky top-0 z-[40] backdrop-blur-md",
             tabList:
               "gap-6 w-full relative rounded-none p-0 border-b border-divider",
             cursor: "w-full bg-indigo-600 dark:bg-indigo-400",
-            tab: "max-w-fit px-0 h-12",
+            tab: "max-w-fit h-12",
             tabContent: "group-data-[selected=true]:text-indigo-600 dark:group-data-[selected=true]:text-indigo-400",
           }}
           color="primary"
