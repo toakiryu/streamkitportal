@@ -35,7 +35,7 @@ function DiscordUIAppCard({
       className="bg-white dark:bg-zinc-800 text-center place-items-center rounded-lg p-10 sm:!p-14 md:!p-20 shadow-md"
     >
       <div className="min-h-[90px]">
-        <Image alt={`${app.name} icon`} src={app.icon} className="w-20 h-auto rounded-none" />
+        <Image alt={`${app.name} icon`} src={app.icon} className="w-20 h-auto mx-auto rounded-none" />
       </div>
       <h2 className="font-bold text-3xl mb-5">{app.label}</h2>
       <p className="text-sm my-5">{app.description}</p>

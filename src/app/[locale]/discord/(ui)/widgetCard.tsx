@@ -31,7 +31,7 @@ function DiscordUIWidgetCard({
       id="w-node-fb33c0ee-07bd-0c0c-53ab-414b5848db38-d9fcf2d0"
       className="bg-white dark:bg-zinc-800 text-center place-items-center rounded-lg p-10 sm:!p-14 md:!p-20 shadow-md"
     >
-      <div className="min-h-[90px]">
+      <div className="w-fit min-h-[90px] mx-auto">
         {widget.icon ? (
           <widget.icon className="size-20" />
         ) : (

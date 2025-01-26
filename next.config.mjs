@@ -30,12 +30,15 @@ const nextConfig = {
         },
       ],
     });
+    config.resolve.fallback = { fs: false }; // fs
     return config;
   },
+  webpack5: true, // fs
 
   images: {
     disableStaticImages: true, // importした画像の型定義設定を無効にする
   },
+
 };
 
 const withMDX = createMDX({
