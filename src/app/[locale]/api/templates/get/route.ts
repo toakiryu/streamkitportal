@@ -5,25 +5,6 @@ import { NextResponse, type NextRequest } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
-export type templateType = {
-  name: string;
-  image: string;
-  fileName: string;
-  creator: {
-    name: string;
-    link: string;
-  };
-  code: string;
-};
-
-export type getTemplatesResType = {
-  templates: templateType[];
-  total: number;
-  init: number;
-  offset: number;
-  filter: string;
-};
-
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const dir = searchParams.get("dir");

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { ReactNode, Suspense, useState } from "react";
 import {
   Button,
   Modal,
@@ -8,29 +8,28 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import { templateType } from "@/components/template";
-import TemplatePreviewCard from "./templatePreviewCard";
 import { Link } from "@/i18n/routing";
-import {
-  decodeShareCode,
-  generateCustomCss,
-  handleCopyText,
-} from "../../../(components)/edit";
+import { decodeShareCode, generateCustomCss, handleCopyText } from "./edit";
 
 import { useThemeDarkOrLight } from "@/hooks/theme";
 import { css } from "@codemirror/lang-css";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { IconCircleDashedX } from "@tabler/icons-react";
+import { templateType } from "@/types/templates";
 
 function TemplateModal({
-  index,
+  passEditURL,
+  baseClassName,
   template,
+  templatePreviewCard,
   isOpen,
   onClose,
   onOpenChange,
 }: {
-  index: number;
+  passEditURL: string;
+  baseClassName: string;
   template: templateType;
+  templatePreviewCard: ReactNode;
   isOpen: boolean;
   onClose: () => void;
   onOpenChange: () => void;
@@ -39,8 +38,13 @@ function TemplateModal({
 
   const themeDarkOrLight = useThemeDarkOrLight();
 
-  const editURL = `http://localhost:3000/discord/overlay/status-widget/editor?sharecode=${template.code}`;
-  const cssCode = generateCustomCss("Status",decodeShareCode(template.code) || "");
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+  const editURL = `${baseUrl}${passEditURL}/editor?sharecode=${template.code}`;
+  const cssCode = generateCustomCss(
+    baseClassName,
+    decodeShareCode(template.code) || ""
+  );
 
   return (
     <Modal
@@ -70,10 +74,8 @@ function TemplateModal({
               <div className="flex flex-col justify-center items-center bg-zinc-100/90 dark:bg-zinc-900/90 w-full h-full mx-6 my-2 border rounded-md">
                 <div className="flex flex-col gap-3 w-full px-5">
                   <Suspense>
-                    <div className="w-auto max-w-full mx-auto py-2 overflow-hidden">
-                      <div>
-                        <TemplatePreviewCard id={index} code={template.code} />
-                      </div>
+                    <div className="w-auto max-w-full py-2 overflow-hidden">
+                      <div>{templatePreviewCard}</div>
                     </div>
                   </Suspense>
                   <Button

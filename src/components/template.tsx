@@ -1,6 +1,6 @@
 "use server";
 
-import { getTemplatesResType } from "@/app/[locale]/api/templates/get/route";
+import { getTemplatesResType } from "@/types/templates";
 
 export async function getTemplates(
   dir: string[] = [],
