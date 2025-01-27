@@ -1,19 +1,22 @@
 import { Link } from "@/i18n/routing";
 
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import { useDisclosure } from "@nextui-org/react";
-import { templateType } from "@/components/template";
-
-import { lazyImport } from "@/components/lazyImport";
-const TemplatePreviewCard = lazyImport(() => import("./templatePreviewCard"));
-const TemplateModal = lazyImport(() => import("./templateModal"));
+import { templateType } from "@/types/templates";
+import TemplateModal from "./templateModal";
 
 export default function TemplateCardContainer({
   index,
+  passEditURL,
+  baseClassName,
   template,
+  templatePreviewCard,
 }: {
   index: number;
+  passEditURL: string;
+  baseClassName: string;
   template: templateType;
+  templatePreviewCard: ReactNode;
 }) {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
@@ -32,9 +35,7 @@ export default function TemplateCardContainer({
           </div>
           <div className="">
             <Suspense>
-              <div className="ml-5">
-                <TemplatePreviewCard id={index} code={template.code} />
-              </div>
+              <div className="ml-5">{templatePreviewCard}</div>
             </Suspense>
           </div>
           <div className="p-3 mt-auto">
@@ -57,8 +58,10 @@ export default function TemplateCardContainer({
         </div>
       </div>
       <TemplateModal
-        index={index}
+        passEditURL={passEditURL}
+        baseClassName={baseClassName}
         template={template}
+        templatePreviewCard={templatePreviewCard}
         isOpen={isOpen}
         onClose={onClose}
         onOpenChange={onOpenChange}

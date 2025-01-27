@@ -2,12 +2,14 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { Button, Input, Pagination, Skeleton } from "@nextui-org/react";
-import { getTemplates, templateType } from "@/components/template";
+import { IconSearch, IconTemplate } from "@tabler/icons-react";
+import { getTemplates } from "@/components/template";
+import { templateType } from "@/types/templates";
 
 import { lazyImport } from "@/components/lazyImport";
-import { IconSearch, IconTemplate } from "@tabler/icons-react";
+import TemplatePreviewCard from "./templatePreviewCard";
 const TemplateCardContainer = lazyImport(
-  () => import("./templatesContainerContent")
+  () => import("../../../(components)/templatesContainerContent")
 );
 
 export function TemplatesContainerSkeleton() {
@@ -105,7 +107,15 @@ export default function TemplatesList() {
                   <Skeleton className="w-[256px] sm:!w-[409px] md:!w-[306px] h-[120px] rounded-md" />
                 }
               >
-                <TemplateCardContainer index={index} template={template} />
+                <TemplateCardContainer
+                  index={index}
+                  passEditURL="/discord/overlay/voice-widget"
+                  baseClassName="Voice"
+                  template={template}
+                  templatePreviewCard={
+                    <TemplatePreviewCard id={index} code={template.code} />
+                  }
+                />
               </Suspense>
             ))}
           </section>

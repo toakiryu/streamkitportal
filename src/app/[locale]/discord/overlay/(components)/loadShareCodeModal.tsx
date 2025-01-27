@@ -12,7 +12,6 @@ import { useThemeDarkOrLight } from "@/hooks/theme";
 import { css } from "@codemirror/lang-css";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { IconCircleDashedX } from "@tabler/icons-react";
-// import TemplatePreviewCard from "../status-widget/(components)/templatePreviewCard";
 import {
   decodeShareCode,
   generateCustomCss,
@@ -68,7 +67,7 @@ function LoadShareCodeModal({
               <div className="flex flex-col justify-center items-center bg-zinc-100/90 dark:bg-zinc-900/90 w-full h-full mx-6 my-2 border rounded-md">
                 <div className="flex flex-col gap-3 w-full px-5">
                   <Suspense>
-                    <div className="w-auto max-w-full mx-auto py-2 overflow-hidden">
+                    <div className="w-auto max-w-full py-2 overflow-hidden">
                       <div>
                         {templatePreviewCard}
                       </div>
